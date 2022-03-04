@@ -5,12 +5,12 @@ import { CreateSpecificationUseCase } from './CreateSpecificationUseCase';
 class CreateSpecificationController {
     
 
-    handle(request: Request, response: Response) {
+    async handle(request: Request, response: Response): Promise<Response> {
         const { name, description } = request.body;
 
         const createSpeficationUseCase = container.resolve(CreateSpecificationUseCase)
 
-        createSpeficationUseCase.execute({name, description}) 
+        await createSpeficationUseCase.execute({name, description}) 
 
         return response.status(201).send();
     }
